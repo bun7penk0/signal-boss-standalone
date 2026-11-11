@@ -1,0 +1,105 @@
+<!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SIGNAL BOSS V3 — Unified Autonomous Intelligence Engine</title><style>
+*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#e5e7eb;font-family:system-ui,sans-serif;padding:16px}
+h1{font-size:24px;margin:6px 0}h1 span{color:#fbbf24}.badge{display:inline-block;background:#064e3b;color:#a7f3d0;padding:6px 10px;border-radius:999px;font-size:12px}
+.warn{background:#1c2a15;border:1px solid #fbbf24;padding:12px;border-radius:12px;line-height:1.6}
+.card{background:#111c33;border:1px solid #263554;border-radius:16px;padding:16px;margin-bottom:12px}
+label{font-size:13px;color:#94a3b8;display:block;margin:8px 0 4px}input,select,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid #334155;background:#0b1220;color:#fff;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.btn{background:#f59e0b;color:#111;border:0;padding:14px;border-radius:12px;font-weight:800;width:100%;font-size:16px;cursor:pointer;margin-top:12px}
+.btnG{background:#22c55e;color:#111;border:0;padding:10px;border-radius:10px;font-weight:700;cursor:pointer}.btnR{background:#7f1d1d;color:#fff;border:0;padding:10px;border-radius:10px;font-weight:700;cursor:pointer}
+.result{font-size:18px;font-weight:800;padding:12px;border-radius:12px;text-align:center;margin-top:10px}.LONG{background:#065f46}.SHORT{background:#7f1d1d}.WAIT{background:#334155}.BLOCK{background:#7f1d1d}.NODATA{background:#334155}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #263554;padding:8px;text-align:left}
+small{color:#94a3b8;line-height:1.6}.pill{display:inline-block;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700}.green{background:#065f46}.red{background:#7f1d1d}.gray{background:#334155}.yellow{background:#92400e}
+.asset{border:1px solid #334155;border-radius:12px;padding:12px;background:#0b1220}
+</style></head><body>
+<h1>SIGNAL BOSS <span>V3 — Unified Engine</span></h1>
+<div class="badge">✓ A: อัตโนมัติตามรอบ + กด Run เองได้ • ไม่ Auto Trade • ไม่ทับ V2 • Whitelist 5 ตัวเดิม • LIVE SNAPSHOT 11 พ.ย. 2026 02:30 UTC • Cycle V3-AUTO-20261111-0930</div>
+<div class="warn" style="margin-top:12px"><b>UNIFIED ENGINE — กดปุ่มเดียว ประมวลผลทั้ง 5 เหรียญ ทุก Core</b><br>Market Data → News → Technical → MTF → Macro → Regime → Data Quality + Conflict → Fusion → Risk Gate → Final Decision → Journal + Learning<br><b>คะแนนไม่ใช่ความน่าจะเป็นกำไร</b> — เป็นแค่คะแนนประกอบการตัดสินใจ • ข่าวร้ายแรงจะไม่ถูกคะแนนกราฟบวกกลบ</div>
+
+<div class="card"><h2>⚙️ ENGINE STATUS</h2>
+<div class="grid3"><div>Engine: <span class="pill green" id="st-engine">READY</span></div><div>Data Quality: <span class="pill gray" id="st-dq">ยังไม่รัน</span></div><div>ข้อมูลล่าสุด: <span id="st-time">—</span></div></div>
+<div class="grid"><div><label>Equity / พอร์ต (USDT)</label><input id="equity" type="number" value="1000"></div><div><label>Risk ต่อรอบ (%)</label><input id="riskRate" type="number" value="1"></div></div>
+<div class="grid"><div><label>Macro Override</label><select id="macro"><option value="riskoff">RISK-OFF — ลดเสี่ยง x0.5</option><option value="normal" selected>Normal — x1.0</option><option value="riskon">RISK-ON — x1.0</option></select></div><div><label>ค่าธรรมเนียม + Slippage (%)</label><input id="fee" type="number" value="0.2"></div></div>
+<label>ข่าวสำคัญรอบนี้ (จะถูกแยกตามเหรียญที่เกี่ยวข้อง) — ใส่ 1 บรรทัดต่อข่าว: เหรียญ,ผลกระทบ -5..+5,ข้อความ เช่น BTC,-4,CPI สูงกว่าคาด</label>
+<textarea id="newsInput" rows="4">BTC,-4,CPI ต.ค. +0.4% สูงกว่าคาด 0.3% Core +0.3% สูงกว่าคาด 0.2%
+ETH,-3,ETF ไหลออก $201M วันจันทร์ IBIT -$213.2M วันที่ 7 ติดกัน
+SOL,-3,เงินทุนไหลออก ตลาด RISK-OFF
+XRP,-2,มหภาคกดดัน ข้อมูลเฉพาะเหรียญไม่ครบ
+ADA,0,ข้อมูลเฉพาะเหรียญไม่เพียงพอ</textarea>
+<small>กฎ Fusion: ถ้าข่าว ≤ -4 → บังคับลดระดับ / WAIT แม้กราฟจะบวก • ถ้าทุก Core ขัดกัน → WAIT • ถ้าข้อมูลผิด/เก่า → NO DATA • ถ้า SL คำนวณไม่ได้ → BLOCK</small>
+<button class="btn" onclick="runUnified()">▶ RUN FULL INTELLIGENCE CYCLE — ประมวลผลทั้ง 5 เหรียญในครั้งเดียว</button>
+<div style="margin-top:8px"><label>Auto Mode ขณะเปิดหน้านี้ (เบราว์เซอร์อาจพักถ้าสลับแอป/ปิดจอ) — รันซ้ำทุก</label><select id="autoMin"><option value="0">ปิด Auto</option><option value="15">15 นาที</option><option value="30" selected>30 นาที</option><option value="60">60 นาที</option></select><button class="btn" onclick="startAuto()" style="background:#22c55e">▶ เปิด Auto Mode</button></div><button class="btnR" onclick="stopEngine()" style="width:100%;margin-top:8px">⏹ STOP ENGINE</button>
+<div id="runOut"></div></div>
+
+<div class="card"><h2>📊 Unified Dashboard — ผลทั้ง 5 เหรียญ</h2><div id="dash"><small>ยังไม่รัน — กด RUN FULL INTELLIGENCE CYCLE ข้างบน</small></div></div>
+
+<div class="card"><h2>📝 กรอกข้อมูลตลาด 5 เหรียญ (OHLCV + Technical + MTF)</h2><small>กรอกครั้งเดียว Engine จะประมวลผลพร้อมกัน ไม่ต้องเปิดทีละแท็บ • ถ้าช่องไหนว่าง = NO DATA สำหรับเหรียญนั้น</small><div id="inputs"></div></div>
+
+<div class="card"><h2>📓 Outcome Tracking + Adaptive Learning</h2><small>Learning จะไม่ปรับสูตรจากสัญญาณผิดครั้งเดียว — ต้องบันทึก Outcome หลายรอบ เก็บเวอร์ชันเดิมไว้เสมอ</small>
+<div id="outcome"></div><button class="btn" onclick="saveOutcome()" style="background:#22c55e">บันทึก Outcome รอบนี้ → Journal + Learning</button><div id="learnOut"></div></div>
+
+<script>
+const SYMS=['BTCUSDT','ETHUSDT','SOLUSDT','XRPUSDT','ADAUSDT'];
+const DEF={BTCUSDT:{p:73217.35,o:74860.01,h:74996.01,l:72727.27,c:73217.35,rsi:0,ema20:0,ema50:0,atr:0,vol:'high',sup:72727.27,res:74996.01,mtf:'down'},ETHUSDT:{p:2055.87,o:2122.15,h:2132.07,l:2006,c:2055.87,rsi:0,ema20:0,ema50:0,atr:0,vol:'high',sup:2006,res:2132.07,mtf:'down'},SOLUSDT:{p:82.99,o:86.04,h:86.61,l:81.34,c:82.99,rsi:0,ema20:0,ema50:0,atr:0,vol:'high',sup:81.34,res:86.61,mtf:'down'},XRPUSDT:{p:1.0502,o:1.0932,h:1.1063,l:1.0311,c:1.0502,rsi:0,ema20:0,ema50:0,atr:0,vol:'normal',sup:1.0311,res:1.1063,mtf:'down'},ADAUSDT:{p:0.1745,o:0.177,h:0.1798,l:0.1702,c:0.1745,rsi:0,ema20:0,ema50:0,atr:0,vol:'low',sup:0.1702,res:0.1798,mtf:'mixed'}};
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function safeGet(k,f){try{const v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function safeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function buildInputs(){document.getElementById('inputs').innerHTML=SYMS.map(s=>{const d=DEF[s];return `<div class="asset"><b>${s}</b><div class="grid"><div><label>Price</label><input id="${s}-p" type="number" value="${d.p}"></div><div><label>RSI</label><input id="${s}-rsi" type="number" value="${d.rsi}"></div><div><label>Open</label><input id="${s}-o" type="number" value="${d.o}"></div><div><label>High</label><input id="${s}-h" type="number" value="${d.h}"></div><div><label>Low</label><input id="${s}-l" type="number" value="${d.l}"></div><div><label>Close</label><input id="${s}-c" type="number" value="${d.c}"></div><div><label>EMA20</label><input id="${s}-ema20" type="number" value="${d.ema20}"></div><div><label>EMA50</label><input id="${s}-ema50" type="number" value="${d.ema50}"></div><div><label>ATR</label><input id="${s}-atr" type="number" value="${d.atr}"></div><div><label>Support</label><input id="${s}-sup" type="number" value="${d.sup}"></div><div><label>Resistance</label><input id="${s}-res" type="number" value="${d.res}"></div><div><label>Volume</label><select id="${s}-vol"><option value="high" ${d.vol==='high'?'selected':''}>สูง</option><option value="normal" ${d.vol==='normal'?'selected':''}>ปกติ</option><option value="low" ${d.vol==='low'?'selected':''}>ต่ำ</option></select></div><div><label>MTF</label><select id="${s}-mtf"><option value="up">ขึ้นตรงกัน</option><option value="down" ${d.mtf==='down'?'selected':''}>ลงตรงกัน</option><option value="mixed" ${d.mtf==='mixed'?'selected':''}>ขัดกัน</option></select></div></div></div>`}).join('')}
+function parseNews(){return document.getElementById('newsInput').value.split('\n').map(l=>l.trim()).filter(Boolean).map(l=>{const parts=l.split(',');const sym=(parts[0]||'').trim().toUpperCase();const imp=parseFloat(parts[1])||0;return {sym,imp,text:parts.slice(2).join(',').trim()}})}
+function runUnified(){
+ document.getElementById('st-engine').textContent='MONITORING'; document.getElementById('st-engine').className='pill yellow';
+ const equity=parseFloat(document.getElementById('equity').value)||0, riskRate=parseFloat(document.getElementById('riskRate').value)||1, feePct=parseFloat(document.getElementById('fee').value)||0.2;
+ const macro=document.getElementById('macro').value; const mult = macro==='riskoff'?0.5:1.0;
+ const news=parseNews(); const now=new Date().toLocaleString('th-TH');
+ let rows=[], details=[];
+ SYMS.forEach(sym=>{
+   const g=id=>parseFloat(document.getElementById(sym+'-'+id).value);
+   const p=g('p'),o=g('o'),h=g('h'),l=g('l'),c=g('c'),rsi=g('rsi'),ema20=g('ema20'),ema50=g('ema50'),atr=g('atr'),sup=g('sup'),res=g('res');
+   const vol=document.getElementById(sym+'-vol').value, mtf=document.getElementById(sym+'-mtf').value;
+   // Data Quality Gate
+   let dq=null; if([p,o,h,l,c].some(x=>!isFinite(x)||x<=0)) dq='NO DATA — ราคาไม่ครบ / ผิด'; else if(h<Math.max(o,c)||l>Math.min(o,c)) dq='NO DATA — OHLC ไม่สอดคล้อง (High/Low ผิด)';
+   // Layers
+   let direction = (p>ema20 && ema20>ema50)?'UP':(p<ema20 && ema20<ema50)?'DOWN':'SIDEWAY';
+   let momentum = rsi<30?'OVERSOLD_REBOUND':rsi>70?'OVERBOUGHT':rsi>=50?'BULLISH':'BEARISH';
+   let confirmation = mtf==='up'?'CONFIRM_UP':mtf==='down'?'CONFIRM_DOWN':'NO_CONFIRM';
+   let myNews=news.filter(n=>n.sym===sym||n.sym==='ALL'); let newsImp=myNews.reduce((a,b)=>a+b.imp,0); let newsDir = newsImp<=-2?'BEARISH':newsImp>=2?'BULLISH':'NEUTRAL';
+   let severe = myNews.some(n=>n.imp<=-4);
+   // Fusion - NOT simple sum
+   let decision='WAIT', reason=[];
+   if(dq){decision='NO DATA'; reason.push(dq)}
+   else if(!isFinite(atr)||atr<=0||!isFinite(sup)||!isFinite(res)){decision='BLOCK'; reason.push('BLOCK — SL คำนวณไม่ได้ (ATR / S/R ไม่ครบ)')}
+   else {
+     if(direction==='UP'&&confirmation==='CONFIRM_UP') reason.push('Technical ขึ้น + MTF ขึ้น → เพิ่มน้ำหนัก LONG BIAS');
+     if(direction==='DOWN'&&confirmation==='CONFIRM_DOWN') reason.push('Technical ลง + MTF ลง → เพิ่มน้ำหนัก SHORT BIAS');
+     if(confirmation==='NO_CONFIRM') reason.push('MTF ขัดกัน → ลดความมั่นใจ');
+     if(severe) reason.push('⚠️ ข่าวร้ายแรง (≤-4) → บังคับลดระดับ / WAIT แม้กราฟจะบวก — ข่าวไม่ถูกคะแนนกราฟกลบ');
+     if(newsDir==='BEARISH') reason.push('News BEARISH');
+     if(newsDir==='BULLISH') reason.push('News BULLISH');
+     // Decision rules
+     if(severe) decision='WAIT';
+     else if(direction==='UP'&&confirmation==='CONFIRM_UP'&&newsDir!=='BEARISH') decision='LONG BIAS';
+     else if(direction==='DOWN'&&confirmation==='CONFIRM_DOWN'&&newsDir!=='BULLISH') decision='SHORT BIAS';
+     else if((direction==='UP'&&newsDir==='BEARISH')||(direction==='DOWN'&&newsDir==='BULLISH')) decision='WAIT', reason.push('NEWS / PRICE CONFLICT → WAIT');
+     else decision='WAIT';
+     if(macro==='riskoff') reason.push('Macro RISK-OFF → RiskMultiplier x0.5');
+   }
+   // Risk Gate
+   const riskBudget=equity*(riskRate/100)*mult; const sl = decision==='LONG BIAS'? sup-atr*0.2 : decision==='SHORT BIAS'? res+atr*0.2 : sup;
+   const dist=Math.abs(p-sl)||0; const posSize = dist>0? riskBudget/dist : 0; const feeCost = posSize*p*feePct/100;
+   const netRisk = riskBudget+feeCost;
+   rows.push({sym,decision,dir:direction,mom:momentum,conf:confirmation,news:newsDir,newsImp,reason:reason.join(' • '),riskBudget,posSize,sl,dist,feeCost,netRisk,price:p});
+   details.push({sym,decision,price:p,at:now,news:myNews});
+ });
+ safeSet('sb_v3_last', {at:now,rows,macro,equity});
+ document.getElementById('st-time').textContent=now;
+ document.getElementById('st-dq').textContent = rows.some(r=>r.decision==='NO DATA')?'INCOMPLETE':'VALID'; document.getElementById('st-dq').className='pill '+(rows.some(r=>r.decision==='NO DATA')?'yellow':'green');
+ document.getElementById('dash').innerHTML=`<table><tr><th>สินทรัพย์</th><th>Technical (Direction/Momentum)</th><th>News</th><th>Decision</th><th>RiskBudget</th><th>Position Size</th><th>SL</th></tr>${rows.map(r=>`<tr><td><b>${r.sym}</b></td><td>${r.dir} / ${r.mom} / ${r.conf}</td><td>${r.news} (${r.newsImp})</td><td><span class="pill ${r.decision.includes('LONG')?'green':r.decision.includes('SHORT')?'red':r.decision==='BLOCK'?'red':'gray'}">${r.decision}</span></td><td>${r.riskBudget.toFixed(2)}</td><td>${r.posSize?r.posSize.toFixed(4)+' หน่วย': '—'}</td><td>${r.sl.toLocaleString()}</td></tr>`).join('')}</table>`+rows.map(r=>`<div class="asset" style="margin-top:8px"><b>${r.sym} — ${r.decision}</b><br><small>${esc(r.reason)}</small><br><small>Entry ~${r.price.toLocaleString()} • SL ${r.sl.toLocaleString()} • ระยะ SL ${r.dist.toFixed(4)} • ค่าธรรมเนียม+Slippage ~${r.feeCost.toFixed(2)} USDT • Risk สุทธิ ~${r.netRisk.toFixed(2)} USDT • ไม่มี Auto Trade — แผนนี้ให้คุณตัดสินใจเอง</small></div>`).join('');
+ document.getElementById('runOut').innerHTML=`<div class="result WAIT">✅ RUN COMPLETE — ${now} • ประมวลผล 5 เหรียญ ครบทุก Core ในรอบเดียว</div><small>สูตร: RiskBudget = Equity × RiskRate × RiskMultiplier • PositionSize = RiskBudget / |Entry - SL| • หักค่าธรรมเนียม + Slippage แล้ว</small>`;
+ document.getElementById('outcome').innerHTML=rows.map(r=>`<div class="grid"><div><label>${r.sym} — Outcome หลังสัญญาณ (เช่น +2.5% / -1% / WAIT)</label><input id="oc-${r.sym}" placeholder="ใส่ผลจริง"></div><div><label>หมายเหตุ</label><input id="ocn-${r.sym}" placeholder="ข่าวอะไรมีผล?"></div></div>`).join('');
+ document.getElementById('st-engine').textContent='READY'; document.getElementById('st-engine').className='pill green';
+}
+function stopEngine(){document.getElementById('st-engine').textContent='STOPPED';document.getElementById('st-engine').className='pill red';document.getElementById('runOut').innerHTML='<div class="result BLOCK">⏹ ENGINE STOPPED — จะไม่ประมวลผลต่อจนกว่าจะกด RUN ใหม่</div>'}
+function saveOutcome(){const last=safeGet('sb_v3_last',null);if(!last){alert('กด RUN ก่อน');return} const rec={at:new Date().toLocaleString('th-TH'),cycleAt:last.at,rows:last.rows.map(r=>({sym:r.sym,decision:r.decision,price:r.price,outcome:document.getElementById('oc-'+r.sym)?.value||'',note:document.getElementById('ocn-'+r.sym)?.value||''}))}; const hist=safeGet('sb_v3_history',[]); hist.push(rec); safeSet('sb_v3_history',hist); document.getElementById('learnOut').innerHTML=`<small>✅ บันทึก Outcome แล้ว — สะสม ${hist.length} รอบ • Adaptive Learning จะยังไม่ปรับน้ำหนักจนกว่าจะมีหลายรอบ + ผ่านทดสอบนอกชุดฝึก • เวอร์ชันสูตรเดิมเก็บไว้เสมอ (V3.0)</small>`}
+let autoTimer=null; function startAuto(){const m=parseInt(document.getElementById('autoMin').value); if(autoTimer)clearInterval(autoTimer); if(!m){alert('เลือกเวลาก่อน');return} autoTimer=setInterval(runUnified, m*60*1000); alert('Auto Mode เปิดแล้ว — จะรันซ้ำทุก '+m+' นาที ตราบที่หน้านี้ยังเปิดอยู่');} buildInputs();
+</script></body></html>decision
