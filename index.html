@@ -1,19 +1,27 @@
 <!doctype html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>SIGNAL BOSS V3 AUTO — ไม่ต้องกรอกข้อมูล</title><style>
-*{box-sizing:border-box}body{margin:0;background:#070b14;color:#e5e7eb;font-family:system-ui,sans-serif;padding:14px}
-.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}h1{font-size:26px;margin:4px 0}h1 span{color:#fbbf24}
-.badge{background:#0f2a1d;color:#a7f3d0;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700}
-.card{background:linear-gradient(180deg,#111c33,#0d1526);border:1px solid #263554;border-radius:18px;padding:16px;margin:12px 0}
-.grid5{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:760px){.grid5{grid-template-columns:1fr 1fr}}@media(min-width:1100px){.grid5{grid-template-columns:1fr 1fr 1fr}}
-.asset{background:#0b1220;border:1px solid #334155;border-radius:16px;padding:14px}.asset h3{margin:0 0 6px}.price{font-size:26px;font-weight:900}.chg{font-weight:800}
-.pill{display:inline-block;padding:5px 11px;border-radius:999px;font-size:12px;font-weight:800}.green{background:#065f46}.red{background:#7f1d1d}.gray{background:#334155}.yellow{background:#92400e}.blue{background:#1e40af}
-table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #263554;padding:7px;text-align:left}
-.btn{background:#f59e0b;color:#111;border:0;padding:14px;border-radius:12px;font-weight:900;width:100%;font-size:16px;cursor:pointer;margin-top:10px}.btn:disabled{opacity:.5}.btnG{background:#22c55e;color:#111;border:0;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}.btnR{background:#7f1d1d;color:#fff;border:0;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}
-input,select{width:100%;padding:11px;border-radius:10px;border:1px solid #334155;background:#0b1220;color:#fff}label{font-size:12px;color:#94a3b8}
-small{color:#94a3b8;line-height:1.6}.bar{height:8px;background:#1e293b;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:#f59e0b}
-.kpi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.kpi div{background:#0b1220;border:1px solid #334155;border-radius:14px;padding:12px;text-align:center}.kpi b{font-size:20px}
+:root{--bg:#060913;--card:#0e1428;--card2:#121a33;--line:#223055;--txt:#eef2ff;--mut:#94a3b8;--green:#22c55e;--red:#ef4444;--amber:#f59e0b;--blue:#3b82f6}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 400px at 20% -10%,#1e3a8a33,transparent),radial-gradient(800px 400px at 90% 0%,#7c3aed22,transparent),var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,sans-serif;padding:12px;max-width:1280px;margin:auto}
+.top{position:sticky;top:0;z-index:10;background:rgba(6,9,19,.88);backdrop-filter:blur(12px);padding:12px 14px;border:1px solid var(--line);border-radius:20px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+h1{font-size:24px;margin:0;letter-spacing:-.5px}h1 span{background:linear-gradient(90deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#f59e0b,#ef4444);display:grid;place-items:center;font-size:22px;box-shadow:0 8px 30px #f59e0b44}
+.badge{background:#0f2a1d;color:#a7f3d0;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;border:1px solid #14532d}
+.card{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:22px;padding:18px;margin:14px 0;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.grid5{display:grid;grid-template-columns:1fr;gap:12px}@media(min-width:700px){.grid5{grid-template-columns:1fr 1fr}}@media(min-width:1100px){.grid5{grid-template-columns:1fr 1fr 1fr}}
+.asset{background:#0a0f22;border:1px solid #263554;border-radius:20px;padding:16px;position:relative;overflow:hidden}.asset:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent,#334155)}.asset.long{--accent:#22c55e}.asset.short{--accent:#ef4444}.asset.wait{--accent:#64748b}
+.asset h3{margin:0;font-size:15px;letter-spacing:.5px}.price{font-size:30px;font-weight:900;letter-spacing:-.5px;margin:6px 0}.chg{font-weight:800}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:800}.green{background:#052e1b;color:#86efac;border:1px solid #14532d}.red{background:#450a0a;color:#fca5a5;border:1px solid #7f1d1d}.gray{background:#1e293b;color:#cbd5e1}.yellow{background:#451a03;color:#fcd34d}.blue{background:#172554;color:#93c5fd}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{border-bottom:1px solid #263554;padding:8px;text-align:left}
+.btn{background:linear-gradient(90deg,#f59e0b,#f97316);color:#111;border:0;padding:15px;border-radius:14px;font-weight:900;width:100%;font-size:16px;cursor:pointer;margin-top:10px;box-shadow:0 8px 24px #f59e0b33}.btn:disabled{opacity:.5}.btnG{background:#22c55e;color:#111;border:0;padding:11px 14px;border-radius:12px;font-weight:800;cursor:pointer}.btnR{background:#7f1d1d;color:#fff;border:0;padding:11px 14px;border-radius:12px;font-weight:800;cursor:pointer}
+input,select{width:100%;padding:12px;border-radius:12px;border:1px solid #334155;background:#0a0f22;color:#fff;font-size:15px}label{font-size:12px;color:var(--mut)}
+small{color:var(--mut);line-height:1.6}.bar{height:8px;background:#1e293b;border-radius:999px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#f59e0b,#ef4444);border-radius:999px}
+.kpi{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.kpi div{background:#0a0f22;border:1px solid #334155;border-radius:16px;padding:14px;text-align:center}.kpi b{font-size:19px}
+.seg{display:flex;background:#0a0f22;border:1px solid #334155;border-radius:999px;padding:4px}.seg button{flex:1;border:0;background:transparent;color:#94a3b8;padding:9px;border-radius:999px;font-weight:800;cursor:pointer}.seg button.on{background:#f59e0b;color:#111}
+.mini{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}.mini div{background:#111936;border-radius:12px;padding:10px;text-align:center}.mini b{font-size:15px}.mini span{font-size:11px;color:#94a3b8}
+.hero{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:800px){.hero{grid-template-columns:1.2fr .8fr}}
 </style></head><body>
-<div class="top"><div><h1>SIGNAL BOSS <span>V3 AUTO</span></h1><div class="badge">✓ เปิดเว็บแล้วดึงข้อมูลเอง • ไม่ต้องกรอก • ไม่ Auto Trade</div></div><div><span class="pill green" id="st">READY</span> <span class="pill gray" id="dq">ยังไม่รัน</span></div></div>
+<div class="top"><div style="display:flex;gap:12px;align-items:center"><div class="logo">⚡</div><div><h1>SIGNAL BOSS <span>V3 AUTO</span></h1><div style="font-size:12px;color:#94a3b8">เปิดเว็บแล้วดึงข้อมูลเอง • ไม่ต้องกรอก • ไม่ Auto Trade</div></div></div><div style="display:flex;gap:8px;align-items:center"><span class="pill green" id="st">● READY</span> <span class="pill gray" id="dq">ยังไม่รัน</span></div></div>
+<div class="hero" style="margin-top:14px"><div class="card" style="margin:0"><div style="font-size:13px;color:#94a3b8">ภาพรวมตลาดวันนี้</div><div style="font-size:32px;font-weight:900;line-height:1.1" id="heroTitle">กำลังดึงข้อมูล...</div><div style="font-size:13px;color:#94a3b8;margin-top:6px" id="heroSub">Binance Public API • 5 เหรียญ • MTF 15m / 1h / 4h</div><div class="seg" style="margin-top:14px"><button class="on">Live</button><button onclick="document.getElementById('dash').scrollIntoView({behavior:'smooth'})">เหรียญ</button><button onclick="lastRows.forEach(r=>drawChart(r.sym,'4h')); document.getElementById('newsBox').scrollIntoView({behavior:'smooth'})">ข่าว</button><button onclick="document.getElementById('errBox').scrollIntoView({behavior:'smooth'})">ปัญหา</button></div></div><div class="card" style="margin:0"><div style="font-size:13px;color:#94a3b8">สรุป Bias</div><div style="display:flex;gap:8px;margin-top:10px"><div style="flex:1;background:#052e1b;border-radius:14px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:900;color:#86efac" id="cLong">—</div><div style="font-size:11px;color:#94a3b8">LONG</div></div><div style="flex:1;background:#450a0a;border-radius:14px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:900;color:#fca5a5" id="cShort">—</div><div style="font-size:11px;color:#94a3b8">SHORT</div></div><div style="flex:1;background:#1e293b;border-radius:14px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:900" id="cWait">—</div><div style="font-size:11px;color:#94a3b8">WAIT</div></div></div><div style="font-size:12px;color:#94a3b8;margin-top:10px">ถ้า WAIT เยอะ = ตลาดยังไม่มีความได้เปรียบชัดเจน อย่าฝืนเทรด</div></div></div>
 <div id="stale" style="display:none;background:#7f1d1d;padding:12px;border-radius:12px;font-weight:800;margin-top:10px">⛔ STALE — ข้อมูลเก่าเกิน 15 นาที กำลังดึงใหม่...</div>
 <div class="card"><div class="kpi"><div><small>Cycle</small><br><b id="cycle">—</b></div><div><small>Data Age</small><br><b id="age">—</b></div><div><small>Market</small><br><b id="market">—</b></div></div>
 <small id="snap">Snapshot: — • แหล่งข้อมูล: Binance Public API (ฟรี ไม่ใช้ API Key) • ข่าว: CryptoCompare News (ถ้าดึงไม่ได้จะขึ้น UNVERIFIED)</small><br>
@@ -26,10 +34,31 @@ small{color:#94a3b8;line-height:1.6}.bar{height:8px;background:#1e293b;border-ra
 
 <div class="card"><h2>📊 Live Dashboard — 5 เหรียญ</h2><div id="dash"><small>กำลังดึงข้อมูลอัตโนมัติ... เปิดหน้านี้ทิ้งไว้ได้เลย</small></div></div>
 <div class="card"><h2>📰 News Auto</h2><div id="newsBox"><small>กำลังดึงข่าว...</small></div></div>
+
+<div class="card" style="border-color:#7f1d1d"><h2>🚨 Error / Problem Log — บันทึกปัญหาอัตโนมัติ</h2>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+<button class="btnG" onclick="exportErrorLog()">⬇ Export Log (.txt)</button>
+<button class="btnR" onclick="clearErrorLog()">🗑 ล้าง Log</button>
+<button class="btnG" onclick="testErrorLog()" style="background:#f59e0b">🧪 ทดสอบ Log</button>
+</div>
+<small>เก็บอัตโนมัติ: ดึงข้อมูลไม่ได้ / API Error / JS Error / ข่าวดึงไม่ได้ / OHLC ผิด / STALE / RUN ซ้ำ / เน็ตหลุด • เก็บไว้ในเครื่อง (LocalStorage) ไม่หายตอนรีเฟรช • <b>ไม่ส่งข้อมูลออกนอกเครื่อง</b></small>
+<div id="errCount" style="margin:8px 0;font-weight:800"></div>
+<div id="errBox"><small>ยังไม่มีปัญหา — ระบบปกติ</small></div></div>
 <div class="card"><h2>📓 Decision Log + Outcome +1h/+4h/+24h</h2><div id="log"><small>ยังไม่มีรอบประมวลผล</small></div>
 <label>กรอบเวลา Outcome</label><select id="horizon"><option>+1h</option><option>+4h</option><option selected>+24h</option></select>
 <button class="btn" onclick="saveOutcome()" style="background:#22c55e">บันทึก Outcome รอบล่าสุด</button><div id="ocOut"></div></div>
 <script>
+
+let __errLog=JSON.parse(localStorage.getItem('sb_v3_err_log')||'[]');
+function pushErr(type,msg,detail=''){const e={at:new Date().toLocaleString('th-TH'),cycle:typeof lastCycle!=='undefined'?lastCycle:'-',type,msg,detail:String(detail||'').slice(0,300)}; __errLog.unshift(e); if(__errLog.length>200) __errLog=__errLog.slice(0,200); localStorage.setItem('sb_v3_err_log',JSON.stringify(__errLog)); renderErrLog();}
+function renderErrLog(){const box=document.getElementById('errBox'); if(!box) return; document.getElementById('errCount').textContent=__errLog.length?`พบปัญหา ${__errLog.length} รายการ (ล่าสุด ${__errLog[0].at})`:'✅ ไม่มีปัญหา'; if(!__errLog.length){box.innerHTML='<small>ยังไม่มีปัญหา — ระบบปกติ</small>';return} box.innerHTML=__errLog.map(e=>`<div style="border:1px solid #7f1d1d;border-radius:10px;padding:10px;margin-top:8px;background:#1a0f0f"><b>[${e.type}]</b> ${e.msg}<br><small>${e.at} • Cycle ${e.cycle}${e.detail?`<br>Detail: ${e.detail}`:''}</small></div>`).join('');}
+function exportErrorLog(){if(!__errLog.length){alert('ไม่มี Log ให้ Export');return} const txt='SIGNAL BOSS V3 AUTO - ERROR LOG\nExport: '+new Date().toLocaleString('th-TH')+'\n---\n'+__errLog.map(e=>`[${e.at}] [${e.type}] Cycle:${e.cycle} | ${e.msg} | ${e.detail}`).join('\n'); const b=new Blob([txt],{type:'text/plain'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='signal-boss-v3-error-log.txt'; a.click();}
+function clearErrorLog(){if(!confirm('ล้าง Error Log ทั้งหมด?'))return; __errLog=[]; localStorage.removeItem('sb_v3_err_log'); renderErrLog();}
+function testErrorLog(){pushErr('TEST','ทดสอบระบบ Log — กดปุ่มทดสอบ','ถ้าเห็นรายการนี้ แปลว่า Log ทำงานปกติ');}
+window.addEventListener('error',e=>{pushErr('JS ERROR',e.message||'Unknown JS error', (e.filename||'')+' line '+(e.lineno||''));});
+window.addEventListener('unhandledrejection',e=>{pushErr('PROMISE', (e.reason&&e.reason.message)||String(e.reason||'Unhandled rejection'));});
+window.addEventListener('online',()=>pushErr('NETWORK','กลับมาออนไลน์แล้ว','online'));
+window.addEventListener('offline',()=>pushErr('NETWORK','เน็ตหลุด — ดึงข้อมูลไม่ได้','offline'));
 const SYMS=['BTCUSDT','ETHUSDT','SOLUSDT','XRPUSDT','ADAUSDT'];
 let running=false, autoTimer=null, lastRows=[], lastCycle='', snapshotAt=0, newsItems=[];
 function fmt(n){return Number(n).toLocaleString('en-US',{maximumFractionDigits:4})}
@@ -37,10 +66,10 @@ function ema(arr,period){let k=2/(period+1),e=arr[0];for(let i=1;i<arr.length;i+
 function rsiWilder(closes,period=14){let gains=[],losses=[];for(let i=1;i<closes.length;i++){let d=closes[i]-closes[i-1];gains.push(Math.max(d,0));losses.push(Math.max(-d,0))}let ag=gains.slice(0,period).reduce((a,b)=>a+b,0)/period, al=losses.slice(0,period).reduce((a,b)=>a+b,0)/period;for(let i=period;i<gains.length;i++){ag=(ag*(period-1)+gains[i])/period; al=(al*(period-1)+losses[i])/period}let rs=al===0?100:ag/al;return 100-(100/(1+rs))}
 function atrCalc(klines,period=14){let trs=[];for(let i=1;i<klines.length;i++){let h=klines[i][2],l=klines[i][3],pc=klines[i-1][4];trs.push(Math.max(h-l,Math.abs(h-pc),Math.abs(l-pc)))}let a=trs.slice(0,period).reduce((x,y)=>x+y,0)/period;for(let i=period;i<trs.length;i++)a=(a*(period-1)+trs[i])/period;return a}
 async function fetchKlines(sym,interval,limit=100){const r=await fetch(`https://api.binance.com/api/v3/klines?symbol=${sym}&interval=${interval}&limit=${limit}`); if(!r.ok) throw new Error('Binance '+r.status); return r.json()}
-async function fetchNews(){try{const r=await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN'); const j=await r.json(); newsItems=(j.Data||[]).slice(0,5).map(x=>({title:x.title,source:x.source,url:x.url,published_at:new Date(x.published_on*1000).toLocaleString('th-TH'),cred:'medium',unverified:false}));}catch(e){newsItems=[{title:'ดึงข่าวอัตโนมัติไม่ได้ — ใช้โหมด UNVERIFIED',source:'unknown',url:'',published_at:'—',cred:'low',unverified:true}];}}
+async function fetchNews(){try{const r=await fetch('https://min-api.cryptocompare.com/data/v2/news/?lang=EN'); const j=await r.json(); newsItems=(j.Data||[]).slice(0,5).map(x=>({title:x.title,source:x.source,url:x.url,published_at:new Date(x.published_on*1000).toLocaleString('th-TH'),cred:'medium',unverified:false}));}catch(e){pushErr('NEWS FAIL','ดึงข่าวอัตโนมัติไม่ได้','CryptoCompare CORS/เน็ต'); newsItems=[{title:'ดึงข่าวอัตโนมัติไม่ได้ (CryptoCompare ติด CORS/เน็ต) — ใช้โหมด UNVERIFIED ไม่นับเป็นข่าวจริง',source:'unknown',url:'',published_at:'—',cred:'low',unverified:true}];}}
 function trendFrom(klines){let closes=klines.map(k=>parseFloat(k[4]));let e20=ema(closes,20), e50=ema(closes,50), price=closes[closes.length-1]; return price>e20&&e20>e50?'up':price<e20&&e20<e50?'down':'side'}
 async function runAuto(){
- if(running){alert('⏳ RUNNING อยู่ ห้ามกดซ้ำ');return} running=true; document.getElementById('st').textContent='RUNNING'; document.getElementById('st').className='pill yellow';
+ if(running){pushErr('CYCLE LOCK','กด RUN ซ้ำตอน RUNNING','ถูกบล็อกโดย Cycle Lock'); alert('⏳ RUNNING อยู่ ห้ามกดซ้ำ');return} running=true; document.getElementById('st').textContent='RUNNING'; document.getElementById('st').className='pill yellow';
  const btn=document.getElementById('runBtn'); btn.disabled=true; btn.textContent='⏳ RUNNING...';
  const cycle='V3-AUTO-'+new Date().toISOString().slice(0,10).replace(/-/g,'')+'-'+String(Date.now()%1000).padStart(3,'0'); lastCycle=cycle; snapshotAt=Date.now();
  document.getElementById('cycle').textContent=cycle; document.getElementById('snap').textContent='Snapshot: '+new Date().toLocaleString('th-TH')+' • Binance Public API • Cycle '+cycle;
@@ -50,35 +79,50 @@ async function runAuto(){
   try{
    const [k4h,k1h,k15]=await Promise.all([fetchKlines(sym,'4h',100),fetchKlines(sym,'1h',100),fetchKlines(sym,'15m',100)]);
    let closes4=k4h.map(k=>parseFloat(k[4])); let price=closes4[closes4.length-1]; let o=parseFloat(k4h[k4h.length-1][1]), h=parseFloat(k4h[k4h.length-1][2]), l=parseFloat(k4h[k4h.length-1][3]), c=price;
-   if(h<Math.max(o,c)||l>Math.min(o,c)){rows.push({sym,decision:'NO DATA',reason:'OHLC ไม่สอดคล้อง',price}); continue}
+   if(h<Math.max(o,c)||l>Math.min(o,c)){pushErr('VALIDATION','OHLC ไม่สอดคล้อง '+sym, 'H:'+h+' L:'+l+' O:'+o+' C:'+c); rows.push({sym,decision:'NO DATA',reason:'OHLC ไม่สอดคล้อง',price}); continue}
    let e20=ema(closes4,20), e50=ema(closes4,50), rsi=rsiWilder(closes4), atr=atrCalc(k4h.map(k=>[0,parseFloat(k[1]),parseFloat(k[2]),parseFloat(k[3]),parseFloat(k[4])]));
    let t15=trendFrom(k15), t1h=trendFrom(k1h), t4h=trendFrom(k4h);
-   let mtf=(t15===t1h&&t1h===t4h)?t15:'mixed'; let conflict=(t15!==t4h);
+   let hasUp=[t15,t1h,t4h].includes('up'), hasDown=[t15,t1h,t4h].includes('down'); let conflict=(hasUp&&hasDown); let mtf=conflict?'mixed':hasDown?'down':hasUp?'up':'side';
    let dir=price>e20&&e20>e50?'UP':price<e20&&e20<e50?'DOWN':'SIDEWAY';
    let newsScore=newsItems.some(n=>n.title.toLowerCase().includes('cpi')||n.title.toLowerCase().includes('inflation'))?-3:0;
    let decision='WAIT', reason=[];
-   if(conflict){reason.push('MTF CONFLICT 15m:'+t15+' / 1h:'+t1h+' / 4h:'+t4h)}
-   if(dir==='UP'&&mtf==='up'&&newsScore>=0) decision='LONG BIAS', reason.push('Technical ขึ้น + MTF ขึ้นตรงกัน');
-   else if(dir==='DOWN'&&mtf==='down'&&newsScore>=0) decision='SHORT BIAS', reason.push('Technical ลง + MTF ลงตรงกัน');
+   if(conflict){reason.push('⚠️ MTF CONFLICT ขึ้น-ลงสวนกัน 15m:'+t15+' / 1h:'+t1h+' / 4h:'+t4h)} else {reason.push('MTF 15m:'+t15+' / 1h:'+t1h+' / 4h:'+t4h+' — ไม่สวนทาง')}
+   if(dir==='UP'&&!hasDown&&newsScore>=0) decision='LONG BIAS', reason.push('Technical ขึ้น + MTF ไม่สวนทาง (4h/1h สนับสนุน)');
+   else if(dir==='DOWN'&&!hasUp&&newsScore>=0) decision='SHORT BIAS', reason.push('Technical ลง + MTF ไม่สวนทาง (4h/1h สนับสนุน)');
    else {decision='WAIT'; reason.push('ยังไม่มีความได้เปรียบชัดเจน / ข่าว-กราฟไม่สอดคล้อง')}
    let equity=parseFloat(document.getElementById('equity').value)||1000, riskPct=parseFloat(document.getElementById('risk').value)||1, mult=document.getElementById('macro').value==='riskoff'?0.5:1;
    let riskBudget=equity*(riskPct/100)*mult; let sl=decision==='LONG BIAS'?l-atr*0.2:decision==='SHORT BIAS'?h+atr*0.2:l; let dist=Math.abs(price-sl)||0; let size=dist>0?riskBudget/dist:0;
-   rows.push({sym,price,o,h,l,c,decision,dir,rsi:e20?rsi:0,e20,e50,atr,mtf,t15,t1h,t4h,reason:reason.join(' • '),riskBudget,size,sl});
-  }catch(e){rows.push({sym,decision:'NO DATA',reason:'ดึงข้อมูลไม่ได้: '+e.message,price:0})}
+   rows.push({sym,k4h:k4h.slice(-40),k15raw:k15.slice(-40),closes:closes4.slice(-40),closes15:k15.map(k=>parseFloat(k[4])).slice(-40),price,o,h,l,c,decision,dir,rsi:e20?rsi:0,e20,e50,atr,mtf,t15,t1h,t4h,reason:reason.join(' • '),riskBudget,size,sl});
+  }catch(e){pushErr('FETCH FAIL', 'ดึงข้อมูล '+sym+' ไม่ได้', e.message); rows.push({sym,decision:'NO DATA',reason:'ดึงข้อมูลไม่ได้: '+e.message,price:0})}
  }
  lastRows=rows;
  let up=rows.filter(r=>r.decision.includes('BIAS')).length;
- document.getElementById('market').textContent=up?up+' BIAS / '+rows.length+' WAIT':'WAIT ทั้งหมด';
+ let _l=rows.filter(r=>r.decision.includes('LONG')).length,_s=rows.filter(r=>r.decision.includes('SHORT')).length,_w=rows.filter(r=>r.decision==='WAIT').length; document.getElementById('cLong').textContent=_l; document.getElementById('cShort').textContent=_s; document.getElementById('cWait').textContent=_w; document.getElementById('heroTitle').textContent=_s>0?('🔴 ตลาดฝั่งลง '+_s+' เหรียญ'):_l>0?('🟢 ตลาดฝั่งขึ้น '+_l+' เหรียญ'):('⚪ ตลาดยังไม่ชัด รอจังหวะ'); document.getElementById('heroSub').textContent='อัปเดต '+new Date().toLocaleString('th-TH')+' • '+rows.map(r=>r.sym.replace('USDT','')+': '+r.decision).join(' • '); document.getElementById('market').textContent=up?up+' BIAS / '+rows.length+' WAIT':'WAIT ทั้งหมด';
  document.getElementById('dq').textContent=rows.some(r=>r.decision==='NO DATA')?'PARTIAL':'VALID'; document.getElementById('dq').className='pill '+(rows.some(r=>r.decision==='NO DATA')?'yellow':'green');
- document.getElementById('dash').innerHTML='<div class="grid5">'+rows.map(r=>`<div class="asset"><h3>${r.sym}</h3><div class="price">$${fmt(r.price)}</div><small>RSI ${r.rsi?r.rsi.toFixed(1):'—'} • EMA20 ${fmt(r.e20||0)} • EMA50 ${fmt(r.e50||0)} • ATR ${fmt(r.atr||0)}</small><br><small>MTF 15m:${r.t15||'-'} / 1h:${r.t1h||'-'} / 4h:${r.t4h||'-'}</small><br><span class="pill ${r.decision.includes('LONG')?'green':r.decision.includes('SHORT')?'red':'gray'}">${r.decision}</span><br><small>${r.reason||''}</small><br><small>RiskBudget ${r.riskBudget?r.riskBudget.toFixed(2):'—'} • Size ${r.size?r.size.toFixed(4):'—'} • SL ${r.sl?fmt(r.sl):'—'}</small><div class="bar" style="margin-top:8px"><i style="width:${r.rsi||50}%"></i></div></div>`).join('')+'</div>';
- document.getElementById('newsBox').innerHTML=newsItems.map(n=>`<div style="border:1px solid #334155;border-radius:12px;padding:10px;margin-top:8px"><b>${n.title}</b><br><small>${n.source} • ${n.published_at} • Cred ${n.cred} ${n.unverified?'• <b style="color:#f87171">UNVERIFIED</b>':''}</small>${n.url?`<br><a href="${n.url}" target="_blank" style="color:#fbbf24">เปิดข่าว</a>`:''}</div>`).join('');
+ document.getElementById('dash').innerHTML='<div class="grid5">'+rows.map(r=>`<div class="asset ${r.decision.includes('LONG')?'long':r.decision.includes('SHORT')?'short':'wait'}"><h3>${r.sym}</h3><div class="price">$${fmt(r.price)}</div><div class="mini"><div><b>${r.rsi?r.rsi.toFixed(0):'—'}</b><br><span>RSI</span></div><div><b>${fmt(r.atr||0)}</b><br><span>ATR</span></div><div><b>${r.dir||'-'}</b><br><span>Trend 4h</span></div></div><div style="margin-top:12px;background:#070b1a;border:1px solid #263554;border-radius:14px;padding:10px"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:12px">🕯️ แท่งเทียน 4h (40 แท่ง)</b><div id="leg-${r.sym}" style="font-size:11px;color:#94a3b8;margin-top:4px"></div><span style="font-size:11px;color:#94a3b8" id="chg-${r.sym}">—</span></div><canvas id="chart-${r.sym}" width="360" height="150" style="width:100%;height:150px;margin-top:6px"></canvas><div style="display:flex;gap:6px;margin-top:6px"><button onclick="drawChart('${r.sym}','4h')" style="flex:1;background:#f59e0b;border:0;border-radius:8px;padding:7px;font-weight:800;cursor:pointer">🕯️ 4h</button><button onclick="drawChart('${r.sym}','15m')" style="flex:1;background:#1e293b;color:#fff;border:0;border-radius:8px;padding:7px;font-weight:800;cursor:pointer">🕯️ 15m</button></div></div><small>RSI ${r.rsi?r.rsi.toFixed(1):'—'} • EMA20 ${fmt(r.e20||0)} • EMA50 ${fmt(r.e50||0)} • ATR ${fmt(r.atr||0)}</small><br><small>MTF 15m:${r.t15||'-'} / 1h:${r.t1h||'-'} / 4h:${r.t4h||'-'}</small><br><span class="pill ${r.decision.includes('LONG')?'green':r.decision.includes('SHORT')?'red':'gray'}">${r.decision}</span><br><small>${r.reason||''}</small><br><small>RiskBudget ${r.riskBudget?r.riskBudget.toFixed(2):'—'} • Size ${r.size?r.size.toFixed(4):'—'} • SL ${r.sl?fmt(r.sl):'—'}</small><div class="bar" style="margin-top:8px"><i style="width:${r.rsi||50}%"></i></div></div>`).join('')+'</div>';
+ lastRows.forEach(r=>drawChart(r.sym,'4h')); document.getElementById('newsBox').innerHTML=newsItems.map(n=>`<div style="border:1px solid #334155;border-radius:12px;padding:10px;margin-top:8px"><b>${n.title}</b><br><small>${n.source} • ${n.published_at} • Cred ${n.cred} ${n.unverified?'• <b style="color:#f87171">UNVERIFIED</b>':''}</small>${n.url?`<br><a href="${n.url}" target="_blank" style="color:#fbbf24">เปิดข่าว</a>`:''}</div>`).join('');
  document.getElementById('log').innerHTML=`<small>✅ Decision บันทึกแล้ว — ${cycle} • ${new Date().toLocaleString('th-TH')} • ${rows.map(r=>r.sym+': '+r.decision).join(' | ')}</small>`;
  document.getElementById('runMsg').innerHTML=`<div style="background:#065f46;padding:12px;border-radius:12px;margin-top:10px;font-weight:800">✅ AUTO CYCLE COMPLETE — ${cycle} • ประมวลผล ${rows.length} เหรียญอัตโนมัติ ไม่ต้องกรอก</div>`;
  running=false; document.getElementById('st').textContent='READY'; document.getElementById('st').className='pill green'; btn.disabled=false; btn.textContent='▶ RUN AUTO CYCLE — ดึงข้อมูลจริง + ประมวลผล 5 เหรียญ';
 }
+
+
+function emaArr(arr,period){let k=2/(period+1),out=[],e=arr[0]; out.push(e); for(let i=1;i<arr.length;i++){e=arr[i]*k+e*(1-k); out.push(e)} return out}
+function drawChart(sym,tf){const r=lastRows.find(x=>x.sym===sym); if(!r) return; const kl=tf==='15m'?r.k15raw:r.k4h; const cv=document.getElementById('chart-'+sym); if(!cv||!kl) return; const ctx=cv.getContext('2d'); const W=cv.width,H=cv.height; ctx.clearRect(0,0,W,H);
+ const closes=kl.map(k=>parseFloat(k[4])); const e20=emaArr(closes,20), e50=emaArr(closes,50);
+ let mn=Infinity,mx=-Infinity; kl.forEach(k=>{mn=Math.min(mn,parseFloat(k[3])); mx=Math.max(mx,parseFloat(k[2]))}); e20.forEach(v=>{mn=Math.min(mn,v); mx=Math.max(mx,v)}); e50.forEach(v=>{mn=Math.min(mn,v); mx=Math.max(mx,v)});
+ const rng=(mx-mn)||1; const Y=v=>H-8-((v-mn)/rng)*(H-20); const cw=W/kl.length;
+ ctx.strokeStyle='rgba(148,163,184,.12)'; ctx.lineWidth=1; [0.25,0.5,0.75].forEach(f=>{ctx.beginPath(); ctx.moveTo(0,H*f); ctx.lineTo(W,H*f); ctx.stroke()});
+ kl.forEach((k,i)=>{const o=parseFloat(k[1]),h=parseFloat(k[2]),l=parseFloat(k[3]),c=parseFloat(k[4]); const up=c>=o; const x=i*cw+cw/2; ctx.strokeStyle=up?'#22c55e':'#ef4444'; ctx.fillStyle=up?'#22c55e':'#ef4444'; ctx.beginPath(); ctx.moveTo(x,Y(h)); ctx.lineTo(x,Y(l)); ctx.stroke(); const bw=Math.max(3,cw*0.62); const top=Y(Math.max(o,c)), bot=Y(Math.min(o,c)); ctx.fillRect(x-bw/2,top,bw,Math.max(1,bot-top));});
+ const drawEMA=(arr,color,dash)=>{ctx.strokeStyle=color; ctx.lineWidth=1.6; ctx.setLineDash(dash); ctx.beginPath(); arr.forEach((v,i)=>{const x=i*cw+cw/2; i?ctx.lineTo(x,Y(v)):ctx.moveTo(x,Y(v))}); ctx.stroke(); ctx.setLineDash([])};
+ drawEMA(e20,'#f59e0b',[]); drawEMA(e50,'#3b82f6',[5,3]);
+ const chg=((closes[closes.length-1]-closes[0])/closes[0]*100); const el=document.getElementById('chg-'+sym); if(el) el.textContent=(chg>=0?'▲ +':'▼ ')+chg.toFixed(2)+'% • '+tf;
+ const leg=document.getElementById('leg-'+sym); if(leg) leg.innerHTML='<span style="color:#22c55e">■</span> ขึ้น <span style="color:#ef4444">■</span> ลง <span style="color:#f59e0b">— EMA20</span> <span style="color:#3b82f6">- - EMA50</span>';
+}
+
 function toggleAuto(){if(autoTimer){clearInterval(autoTimer); autoTimer=null; document.getElementById('autoBtn').textContent='▶ เปิด Auto ทุก 5 นาที'; return} autoTimer=setInterval(runAuto,5*60*1000); document.getElementById('autoBtn').textContent='⏸ ปิด Auto (กำลังรันทุก 5 นาที)'; runAuto();}
 function stopAll(){running=false; if(autoTimer)clearInterval(autoTimer); autoTimer=null; document.getElementById('st').textContent='STOPPED'; document.getElementById('st').className='pill red'; document.getElementById('runBtn').disabled=false;}
 function saveOutcome(){if(!lastRows.length){alert('กด RUN ก่อน');return} const h=document.getElementById('horizon').value; const hist=JSON.parse(localStorage.getItem('sb_v3_auto_hist')||'[]'); hist.push({cycle:lastCycle,horizon:h,at:new Date().toLocaleString('th-TH'),rows:lastRows.map(r=>({sym:r.sym,decision:r.decision,price:r.price}))}); localStorage.setItem('sb_v3_auto_hist',JSON.stringify(hist)); document.getElementById('ocOut').innerHTML=`<small>✅ บันทึก Outcome ${h} แล้ว — สะสม ${hist.length} รอบ • ยังไม่ปรับน้ำหนักจนกว่าจะมีหลายรอบ</small>`}
-setInterval(()=>{if(!snapshotAt)return; let m=Math.floor((Date.now()-snapshotAt)/60000); document.getElementById('age').textContent=m<1?'<1 นาที':m+' นาที'; document.getElementById('stale').style.display=m>15?'block':'none';},1000);
-window.addEventListener('load',()=>{runAuto();});
-</script></body></html>small
+setInterval(()=>{if(!snapshotAt)return; let m=Math.floor((Date.now()-snapshotAt)/60000); document.getElementById('age').textContent=m<1?'<1 นาที':m+' นาที'; document.getElementById('stale').style.display=m>15?'block':'none'; if(m>15&&!window.__staleLogged){window.__staleLogged=true; pushErr('STALE','ข้อมูลเก่าเกิน 15 นาที','Data Age '+m+' นาที — ไม่ควรใช้เทรด');} if(m<=15) window.__staleLogged=false;},1000);
+window.addEventListener('load',()=>{renderErrLog(); runAuto();});
+</script></body></html>
